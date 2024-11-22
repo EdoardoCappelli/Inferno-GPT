@@ -5,33 +5,9 @@ This project trains a Generative Pre-trained Transformer (GPT) language model on
 
 The training script (`train.py`) includes functionalities such as data preprocessing, model training, evaluation, and text generation. The model architecture is defined in `model.py`.
 
-## Project Structure
-```
-├── data/
-│   └── inferno.txt             # Text file containing Dante's Inferno
-├── checkpoints/                # Directory for saving model checkpoints
-│   ├── best_gpt_model.pth      # Best model checkpoint
-│   ├── final_gpt_model.pth     # Final model checkpoint
-│   └── tokenizer_config.json   # Tokenizer configuration
-├── train.py                    # Script for training the model
-├── model.py                    # GPT model architecture
-└── README.md                   # Project documentation
-```
-
-## Requirements
-- Python 3.8+
-- PyTorch 2.0+
-- `tiktoken` for tokenization
-- `wandb` for experiment tracking (optional)
-- Other Python packages (`tqdm`, `json`, etc.)
-
-Install the dependencies:
-```bash
-pip install -r requirements.txt
-```
 
 ## Data Preparation
-Ensure that `data/inferno.txt` contains the full text of *Inferno*. The training script will tokenize this text and split it into training, validation, and test sets:
+`data/inferno.txt` contains the full text of *Inferno*. The training script will tokenize this text and split it into training, validation, and test sets:
 
 - **Training set**: 80%
 - **Validation set**: 10%
@@ -57,30 +33,6 @@ To train the model, run:
 ```bash
 python train.py
 ```
-
-### Key Training Hyperparameters
-- **Batch size**: 32
-- **Block size**: 128 (sequence length)
-- **Learning rate**: 3e-4
-- **Max iterations**: 2000
-- **Gradient accumulation steps**: 2
-- **Early stopping patience**: 5 epochs
-- **Device**: CUDA (if available)
-
-The training script performs the following:
-1. **Loads and tokenizes** the text data.
-2. **Initializes** the model and optimizer.
-3. **Trains** the model with gradient accumulation to optimize GPU usage.
-4. **Evaluates** model performance on the validation set.
-5. **Implements early stopping** to avoid overfitting.
-6. **Saves the best checkpoint** based on validation loss.
-
-### Logging with Weights & Biases
-The script integrates with `wandb` for tracking experiments. To enable logging, set `log = True` in the script:
-```python
-wandb.init(project="dante_gpt")
-```
-
 ## Evaluation
 After training, the model is evaluated on the test set:
 - **Perplexity**: Measures how well the model predicts the next token.
