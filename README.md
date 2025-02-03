@@ -33,15 +33,6 @@ To train the model, run:
 ```bash
 python train.py
 ```
-## Evaluation
-After training, the model is evaluated on the test set:
-- **Perplexity**: Measures how well the model predicts the next token.
-- **Text generation**: Generates sample texts based on the model's learned patterns.
-
-To evaluate on the test set:
-```bash
-python train.py --evaluate
-```
 
 ### Sample Output
 The model can generate text in the style of Dante after being trained. For example:
